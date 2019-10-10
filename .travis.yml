@@ -1,4 +1,11 @@
-language: ruby
-rvm:
- - 2.2
- - jruby
+language: minimal
+
+services:
+   - docker
+
+before_install:
+- docker pull debian:buster-slim
+
+script:
+ - docker --version
+ - docker run --rm debian:buster-slim /bin/sh -c "echo 'executed in docker container' && docker --version || true"
